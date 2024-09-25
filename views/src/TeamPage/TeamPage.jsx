@@ -5,11 +5,11 @@ import SearchBar from './Components/SearchBar';
 import PlayerDisplay from './Components/PlayerDisplay';
 import NavBar from '../Components/NavBar'
 
+
+
 const TeamPage = () => {
   const [category, setCategory] = useState('Batsmen');
-  const [players, setPlayers] = useState([
-    { name: 'Player A', stats: ['Left Handed', 'Power', 'Certainty', 'SR 140', 'Avg 50'] },
-    { name: 'Player B', stats: ['Right Handed', 'Power', 'Certainty', 'SR 120', 'Avg 55'] },]);
+  const [players, setPlayers] = useState([])
     const [filteredPlayers, setFilteredPlayers] = useState([]);
 
   const handleSearch = (searchTerm, filters) => {
@@ -45,7 +45,7 @@ const TeamPage = () => {
 
       {/* Main Content */}
       <div className="w-3/4 p-8">
-        <SearchBar category={category} onSearch={handleSearch} />
+        <SearchBar players={players} setPlayers={setPlayers} category={category} onSearch={handleSearch} />
         
         <div className="mt-10">
           <PlayerDisplay 

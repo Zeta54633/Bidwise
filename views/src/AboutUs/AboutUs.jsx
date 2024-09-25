@@ -3,7 +3,7 @@ import NavBar from '../Components/NavBar'
 
 const AboutUs = () => {
 return (
-    <div>
+    <div className='flex'>
       <NavBar/>
     </div>
   )

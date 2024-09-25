@@ -2,12 +2,16 @@
 import React, { useState } from 'react';
 import FilterDropdown from './FilterDropdown';
 
-const SearchBar = ({ category, onSearch }) => {
+const SearchBar = ({ category, onSearch,players,setPlayers }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({});
 
   const handleSearch = () => {
-    onSearch(searchTerm, filters);
+    // onSearch(searchTerm, filters);
+    //API, get the data, whatever
+    //[{name:'smthg',avg:347289},{name:'smthgelse'}]
+    setPlayers(whatever)
+    
   };
 
   return (

@@ -11,7 +11,7 @@ const BenefitsSection = () => {
     {
       title: "Performance-Based Suggestions",
       description: "Get player recommendations based on runs, wickets, strike rates, economy, and more, tailored to your team's needs.",
-      icon: "⬇️", // Replace this with actual icon/image
+      icon: "💹", // Replace this with actual icon/image
     },
     {
       title: "Auction-Ready Profiles",
@@ -21,7 +21,7 @@ const BenefitsSection = () => {
     {
       title: "Build a Winning Strategy",
       description: "Create customized lineups and select players that enhance team balance and adaptability in upcoming matches.",
-      icon: "👧👦", // Replace this with actual icon/image
+      icon: "🏏", // Replace this with actual icon/image
     },
   ];
 
