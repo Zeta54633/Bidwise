@@ -3,7 +3,7 @@ import React from 'react';
 
 const FilterDropdown = ({ category, selectedFilters, onChange }) => {
   const filters = {
-    Batsmen: ['Power', 'Certainty', 'SR', 'Average'],
+    Batsmen: ['Power', 'Certainty', 'SR', 'Finishing', 'Boundary Hitting','Match Impact'],
     Bowlers: ['Pace', 'Spin', 'Economy', 'Wickets', 'Average'],
     Allrounders: ['Batting Avg', 'Bowling Avg', 'Power', 'Certainty', 'Versatility']
   };
