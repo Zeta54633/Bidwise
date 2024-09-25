@@ -2,7 +2,7 @@
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="font-semibold">
         Landing!!
     </div>
   )
