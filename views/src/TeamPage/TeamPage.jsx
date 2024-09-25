@@ -1,7 +1,11 @@
 
+import Header from "../Components/Header";
+
 function TeamPage()
 {
-    return <h1>This is Team Page</h1>
+    return <>
+        <Header />
+    </>
 }
 
 export default TeamPage;

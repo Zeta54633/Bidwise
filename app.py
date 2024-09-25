@@ -1,18 +1,30 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, abort, redirect, url_for, make_response
 import os
+
+# Importing Model
+from Model.initialize import initializeSession
 
 app = Flask(__name__, static_folder='views/dist')
 
-# Serve the React app for all routes
-@app.route('/', defaults={'path': ''})  # Default route
-@app.route('/<path:path>')              # All other routes
+# Route Handler
+@app.route('/', defaults={'path': ''}) 
+@app.route('/<path:path>')             
 def serve_react_app(path):
-    # If the requested path exists in the 'static' folder, serve it
     if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
         return send_from_directory(app.static_folder, path)
     else:
-        # Otherwise, serve index.html (for React routing)
         return send_from_directory(app.static_folder, 'index.html')
+
+
+# API Handler
+@app.route('/api/maketeam', methods=['GET'])  # Coming from the get started button.
+def redirect_to_makeTeam():
+    initializeSession()
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
