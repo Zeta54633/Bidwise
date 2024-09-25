@@ -1,7 +1,11 @@
 
-function LandingPage()
-{
-    return (<h1>Hello this is Landing</h1>) 
+
+const LandingPage = () => {
+  return (
+    <div>
+        Landing!!
+    </div>
+  )
 }
 
-export default LandingPage;
+export default LandingPage
