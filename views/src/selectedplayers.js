@@ -8,3 +8,5 @@ const selectedplayers=create((set)=>({
     })),
     
 }))
+
+export default selectedplayers

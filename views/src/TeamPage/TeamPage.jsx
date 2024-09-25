@@ -4,12 +4,15 @@ import React, { useState } from 'react';
 import SearchBar from './Components/SearchBar';
 import PlayerDisplay from './Components/PlayerDisplay';
 import NavBar from '../Components/NavBar'
+import SelectedPlayers from '../SelectedPlayers/SelectedPlayers';
 
 
 
 const TeamPage = () => {
   const [category, setCategory] = useState('Batsmen');
   const [players, setPlayers] = useState([])
+  const addPlayer = SelectedPlayers((state) => state.addPlayer);
+  const pl = SelectedPlayers((state) => state.players);
     const [filteredPlayers, setFilteredPlayers] = useState([]);
 
   const handleSearch = (searchTerm, filters) => {
@@ -21,8 +24,11 @@ const TeamPage = () => {
   };
 
   const handleAddPlayer = (player) => {
-    console.log(`Added player: ${player.name}`);
-    // Logic to add player to another component can go here
+    
+    addPlayer(player);
+    console.log('new global state ',pl);
+    
+    
   };
 
   return (
@@ -53,6 +59,7 @@ const TeamPage = () => {
             onAddPlayer={handleAddPlayer}
           />
         </div>
+        <SelectedPlayers players={pl} />
       </div>
     </div>
   );
