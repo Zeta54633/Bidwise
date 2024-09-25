@@ -20,7 +20,7 @@ const LandingPage = () => {
               onLoopDone={(loopCount) => console.log(`Looped ${loopCount} times`)}
             /></span> 
             
-            <button className="btn-glow text-black text-xl bg-white bg-opacity- backdrop-blur-md border border-white border-opacity-30 px-10 py-3 rounded-full mt-10 flex items-center gap-3">
+            <button className="btn-glow text-black text-xl bg-white bg-opacity- backdrop-blur-md border border-white border-opacity-30 px-10 py-3 rounded-full mt-32 flex items-center gap-3">
   Get Started <FaArrowRight />
 </button>
             
