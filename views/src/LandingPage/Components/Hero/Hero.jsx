@@ -19,13 +19,17 @@ function gotobuild()
 
 const Hero = () => {
   return (
-    <div className="w-screen bg-dark-blue">
+    <div className="h-screen w-screen bg-dark-blue">
         <div className="pt-16 w-full flex flex-col items-center justify-items-center gap-10 pb-10">
           <div className="text-white raleway text-5xl text-center">
             Welcome to the intelligent sports era with Bidwise!
           </div>
-          <div className="raleway text-center text-white text-2xl">Find the perfect fit for your squad based on </div> <span className="raleway text-xl text-blue-400">
+          <div className="text-white raleway text-2xl text-center">
+          Discover strategies that elevate your team's performance and dynamics.
+          </div>
+          <div className="raleway text-center text-white text-2xl">Find the perfect fit for your squad based on </div> <span className="raleway text-2xl text-blue-400">
           <Typewriter
+            
               words={['Stats', 'Performance', 'Synergy']}
               loop={0}
               cursor
