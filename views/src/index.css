@@ -40,3 +40,6 @@
   .btn-glow:hover {
     animation: rainbowGlow 1.5s infinite alternate;
   }
+body{
+  overflow-x: hidden;
+}

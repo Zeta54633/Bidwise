@@ -1,17 +1,11 @@
+import React from 'react'
 
-import Header from "../Components/Header";
-import PlateHolder from "../Components/PlateHolder";
-import PlayerPlate from "../Components/PlayerPlate";
-
-
-function TeamPage()
-{
-    return <>
-        <Header />
-       
-        <br></br>
-        <PlateHolder/>
-    </>
+const TeamPage = () => {
+  return (
+    <div>
+      Hi
+    </div>
+  )
 }
 
-export default TeamPage;
+export default TeamPage

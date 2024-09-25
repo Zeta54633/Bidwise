@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/Build" element={<TeamPage />} />
+        
       </Routes>
     </BrowserRouter>
   </StrictMode>
