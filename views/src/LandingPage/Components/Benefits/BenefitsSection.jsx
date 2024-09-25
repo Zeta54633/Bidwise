@@ -4,23 +4,23 @@ import './BenefitsSection.css'; // Assuming you're using a separate CSS file for
 const BenefitsSection = () => {
   const benefits = [
     {
-      title: "Enjoy on your TV",
-      description: "Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
+      title: "Find the Best Players",
+      description: "Analyze past performances and player statistics to discover the most suitable players for your team.",
       icon: "🎥", // Replace this with actual icon/image
     },
     {
-      title: "Download your shows to watch offline",
-      description: "Save your favourites easily and always have something to watch.",
+      title: "Performance-Based Suggestions",
+      description: "Get player recommendations based on runs, wickets, strike rates, economy, and more, tailored to your team's needs.",
       icon: "⬇️", // Replace this with actual icon/image
     },
     {
-      title: "Watch everywhere",
-      description: "Stream unlimited movies and TV shows on your phone, tablet, laptop and TV.",
+      title: "Auction-Ready Profiles",
+      description: "Detailed player profiles with insights on strengths, weaknesses, and auction potential, helping you make informed decisions.",
       icon: "📱", // Replace this with actual icon/image
     },
     {
-      title: "Create profiles for kids",
-      description: "Send kids on adventures with their favourite characters in a space made just for them — free with your membership.",
+      title: "Build a Winning Strategy",
+      description: "Create customized lineups and select players that enhance team balance and adaptability in upcoming matches.",
       icon: "👧👦", // Replace this with actual icon/image
     },
   ];

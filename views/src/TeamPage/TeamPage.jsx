@@ -1,15 +1,15 @@
+
 // TeamPage.js
 import React, { useState } from 'react';
 import SearchBar from './Components/SearchBar';
 import PlayerDisplay from './Components/PlayerDisplay';
+import NavBar from '../Components/NavBar'
 
 const TeamPage = () => {
   const [category, setCategory] = useState('Batsmen');
   const [players, setPlayers] = useState([
     { name: 'Player A', stats: ['Left Handed', 'Power', 'Certainty', 'SR 140', 'Avg 50'] },
-    { name: 'Player B', stats: ['Right Handed', 'Power', 'Certainty', 'SR 120', 'Avg 55'] },
-  ]);
-  const [filteredPlayers, setFilteredPlayers] = useState([]);
+    { name: 'Player B', stats: ['Right Handed', 'Power', 'Certainty', 'SR 120', 'Avg 55'] },]);
 
   const handleSearch = (searchTerm, filters) => {
     // Filter logic combining searchTerm and filters
@@ -26,7 +26,7 @@ const TeamPage = () => {
 
   return (
     <div className="flex h-screen">
-      <nav className="w-[250px] bg-gray-800 text-white p-4">
+      {/* <nav className="w-[250px] bg-gray-800 text-white p-4">
         <h3 className="text-xl font-semibold mb-4">Categories</h3>
         <ul>
           <li className="mb-2">
@@ -37,9 +37,10 @@ const TeamPage = () => {
           </li>
           <li>
             <button onClick={() => setCategory('Allrounders')} className="w-full text-left p-2 hover:bg-gray-600 transition duration-300 ease-in-out">Allrounders</button>
-          </li>
+          </li>bhbhhbhbhbhhbh
         </ul>
-      </nav>
+      </nav> */}
+      <NavBar type={category} setType={setCategory}/>
 
       {/* Main Content */}
       <div className="w-3/4 p-8">
