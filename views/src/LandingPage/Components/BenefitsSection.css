@@ -1,0 +1,40 @@
+.benefits-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    background-color: #0E1127;
+    max-width: 100%; /* Adjusted to occupy more than half of the page */
+    margin: 0 auto; /* Center the section */
+  }
+  
+  .benefit-card {
+    background: #384B70;
+    color: white;
+    border-radius: 10px;
+    padding: 40px;
+    width: 20%; /* Adjust width to make the cards wider */
+    height: 350px; /* Adjust height to make cards longer */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .benefit-icon {
+    font-size: 36px; /* Slightly increased the icon size */
+    margin-bottom: 15px;
+  }
+  
+  .benefit-title {
+    font-size: 20px; /* Increased title font size */
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-weight: bold;
+  }
+  
+  .benefit-description {
+    font-size: 16px; /* Increased font size for better readability */
+    line-height: 1.5; /* Adjusted line spacing */
+  }
+  

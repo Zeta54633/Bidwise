@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, abort, redirect, url_for, make_response
+from flask import Flask, send_from_directory, abort, redirect, url_for, make_response, jsonify
 import os
 
 # Importing Model
@@ -20,6 +20,8 @@ def serve_react_app(path):
 @app.route('/api/maketeam', methods=['GET'])  # Coming from the get started button.
 def redirect_to_makeTeam():
     initializeSession()
+    
+    return jsonify({'message': 'Team initialized successfully'}), 200
 
 
 

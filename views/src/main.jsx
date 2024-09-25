@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import LandingPage from './LandingPage/LandingPage'
 import TeamPage from './TeamPage/TeamPage'
+import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

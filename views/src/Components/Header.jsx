@@ -5,14 +5,14 @@ const Header = () => {
   return (
     <header style={styles.headerContainer}>
       <div style={styles.logoContainer}>
-        <h1 style={styles.logo}>MyWebsite</h1>
+        <h1 style={styles.logo}>BidWise</h1>
       </div>
       <nav style={styles.navContainer}>
         <ul style={styles.navList}>
-          <li style={styles.navItem}><a href="#home" style={styles.navLink}>Home</a></li>
-          <li style={styles.navItem}><a href="#about" style={styles.navLink}>About</a></li>
-          <li style={styles.navItem}><a href="#services" style={styles.navLink}>Services</a></li>
-          <li style={styles.navItem}><a href="#contact" style={styles.navLink}>Contact</a></li>
+          <li style={styles.navItem}><a href="/" style={styles.navLink}>Home</a></li>
+          <li style={styles.navItem}><a href="/build" style={styles.navLink}>Build Team</a></li>
+          <li style={styles.navItem}><a href="/scout" style={styles.navLink}>Talent Scout</a></li>
+          <li style={styles.navItem}><a href="/about" style={styles.navLink}>About Us</a></li>
         </ul>
       </nav>
     </header>
@@ -27,6 +27,8 @@ const styles = {
     padding: '10px 20px',
     backgroundColor: '#333',
     color: '#fff',
+    height: '100px',
+    width: '100%',
   },
   logoContainer: {
     flex: 1,

@@ -1,6 +1,22 @@
 
-import { Typewriter } from "react-simple-typewriter"
+import { Typewriter } from "react-simple-typewriter";
 import { FaArrowRight } from "react-icons/fa";
+
+function gotobuild()
+{
+  fetch('/api/maketeam', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+  window.location.href = '/build';
+}
+
 const Hero = () => {
   return (
     <div className=" h-screen w-screen bg-dark-blue">
@@ -20,7 +36,7 @@ const Hero = () => {
               onLoopDone={(loopCount) => console.log(`Looped ${loopCount} times`)}
             /></span> 
             
-            <button className="btn-glow text-black text-xl bg-white bg-opacity- backdrop-blur-md border border-white border-opacity-30 px-10 py-3 rounded-full mt-32 flex items-center gap-3">
+            <button onClick={gotobuild} className="btn-glow text-black text-xl bg-white bg-opacity- backdrop-blur-md border border-white border-opacity-30 px-10 py-3 rounded-full mt-32 flex items-center gap-3">
   Get Started <FaArrowRight />
 </button>
             
