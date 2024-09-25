@@ -10,6 +10,7 @@ const TeamPage = () => {
   const [players, setPlayers] = useState([
     { name: 'Player A', stats: ['Left Handed', 'Power', 'Certainty', 'SR 140', 'Avg 50'] },
     { name: 'Player B', stats: ['Right Handed', 'Power', 'Certainty', 'SR 120', 'Avg 55'] },]);
+    const [filteredPlayers, setFilteredPlayers] = useState([]);
 
   const handleSearch = (searchTerm, filters) => {
     // Filter logic combining searchTerm and filters
