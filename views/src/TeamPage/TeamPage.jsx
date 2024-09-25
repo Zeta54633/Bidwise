@@ -1,17 +1,17 @@
-
-import Header from "../Components/Header";
-import PlateHolder from "../Components/PlateHolder";
-import PlayerPlate from "../Components/PlayerPlate";
+import React, { useState } from 'react'
+import NavBar from '../Components/NavBar'
 
 
-function TeamPage()
-{
-    return <>
-        <Header />
-       
-        <br></br>
-        <PlateHolder/>
-    </>
+const TeamPage = () => {
+    const [type,setType]=useState('batsman')
+
+  return (
+    <div className='flex'>
+        <NavBar type={type} setType={setType}/>
+        
+
+    </div>
+  )
 }
 
-export default TeamPage;
+export default TeamPage

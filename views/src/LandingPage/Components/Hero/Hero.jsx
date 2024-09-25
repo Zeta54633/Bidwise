@@ -19,8 +19,8 @@ function gotobuild()
 
 const Hero = () => {
   return (
-    <div className=" h-screen w-screen bg-dark-blue">
-        <div className="pt-16 w-full flex flex-col items-center justify-items-center gap-10">
+    <div className="w-screen bg-dark-blue">
+        <div className="pt-16 w-full flex flex-col items-center justify-items-center gap-10 pb-10">
           <div className="text-white raleway text-5xl text-center">
             Welcome to the intelligent sports era with Bidwise!
           </div>
