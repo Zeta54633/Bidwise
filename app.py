@@ -3,6 +3,7 @@ import os
 
 # Importing Model
 from Model.initialize import initializeSession
+from Model.getPlayers import getPlayers
 
 app = Flask(__name__, static_folder='views/dist')
 
@@ -22,6 +23,12 @@ def redirect_to_makeTeam():
     initializeSession()
     
     return jsonify({'message': 'Team initialized successfully'}), 200
+
+app.route('api/getplayer', methods=['GET'])
+def  get_player():
+    getPlayers(type)
+
+    return jsonify({'message': 'Data successfully  fetched'}), 200
 
 
 
