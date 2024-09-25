@@ -6,13 +6,35 @@ const SearchBar = ({ category, onSearch,players,setPlayers }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({});
 
-  const handleSearch = () => {
-    // onSearch(searchTerm, filters);
-    //API, get the data, whatever
-    //[{name:'smthg',avg:347289},{name:'smthgelse'}]
-    setPlayers(whatever)
+  async function handleSearch() 
+  {
+    const params = new URLSearchParams({
+      search: searchTerm,
+      filter: filters,
+      type: category
+  });
+
+  try {
+    const response = await fetch(`api/getplayers?${params}`);
     
-  };
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    const data = await response.json();
+    const playersList = data.players;
+
+    console.log("data : "+playersList[0].name);
+    
+    // Assuming `data.players` contains the players array
+
+    setPlayers(playersList);
+
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+    
+};
 
   return (
     <div className="mb-8">

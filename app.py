@@ -1,9 +1,9 @@
-from flask import Flask, send_from_directory, abort, redirect, url_for, make_response, jsonify
+from flask import Flask, send_from_directory, abort, redirect, url_for, make_response, jsonify, request
 import os
 
 # Importing Model
 from Model.initialize import initializeSession
-from Model.getPlayers import getPlayers
+from Model.getPlayers import getPlayersFromDB
 
 app = Flask(__name__, static_folder='views/dist')
 
@@ -24,11 +24,42 @@ def redirect_to_makeTeam():
     
     return jsonify({'message': 'Team initialized successfully'}), 200
 
-app.route('api/getplayer', methods=['GET'])
-def  get_player():
-    getPlayers(type)
+@app.route('/api/getplayers', methods=['GET'])
+def getplayers():
+    try:
+        search = request.args.get('search')
+        filter_param = request.args.get('filter')
+        player_type = request.args.get('type')
 
-    return jsonify({'message': 'Data successfully  fetched'}), 200
+        # Call to fetch players from DB
+        players = getPlayersFromDB(search, filter_param, player_type)
+
+        #print("players ",players)
+
+        # Build response
+        players_data = []
+        if players:
+            for i in players:
+                temp = {
+                    'name': i[0],      # Name of the player
+                    'stats': [
+                     i[1],      # Total runs
+                    i[2],     # Balls faced
+                    i[3],     # Number of sixes
+                    i[4],  ]   # Number of times out
+                }
+                players_data.append(temp)
+
+        # Return JSON response
+        print("player data", players_data)
+        return jsonify({"message": "Success", "players": players_data})
+    
+    
+    except Exception as e:
+        # Handle the error and return a JSON error response instead of an HTML error page
+        return jsonify({"message": "Error occurred", "error": str(e)}), 500
+
+
 
 
 

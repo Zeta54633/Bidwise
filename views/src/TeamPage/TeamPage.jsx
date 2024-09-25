@@ -49,7 +49,7 @@ const TeamPage = () => {
         
         <div className="mt-10">
           <PlayerDisplay 
-            players={[...players, ...filteredPlayers]} // Combine players and search results in one box
+            players={players} // Combine players and search results in one box
             onAddPlayer={handleAddPlayer}
           />
         </div>
