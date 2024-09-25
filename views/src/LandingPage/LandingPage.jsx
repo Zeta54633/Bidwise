@@ -1,10 +1,8 @@
 
-
+import Hero from "./Components/Hero"
 const LandingPage = () => {
   return (
-    <div className="font-semibold">
-        Landing!!
-    </div>
+   <Hero/>
   )
 }
 
