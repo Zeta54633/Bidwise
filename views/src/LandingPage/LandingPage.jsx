@@ -1,7 +1,9 @@
 
-function LandingPage()
-{
-    return (<h1>Hello this is Landing</h1>) 
+import Hero from "./Components/Hero"
+const LandingPage = () => {
+  return (
+   <Hero/>
+  )
 }
 
-export default LandingPage;
+export default LandingPage
