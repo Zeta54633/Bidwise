@@ -3,7 +3,7 @@ import React from 'react';
 
 const FilterDropdown = ({ category, selectedFilters, onChange }) => {
   const filters = {
-    Batsmen: ['Power', 'Certainty', 'SR', 'Finishing', 'Boundary Hitting','Match Impact'],
+    Batsmen: ['BMI', 'BPB', 'FI', 'RBW', 'Power', 'Certainity'],
     Bowlers: ['Pace', 'Spin', 'Economy', 'Wickets', 'Average'],
     Allrounders: ['Batting Avg', 'Bowling Avg', 'Power', 'Certainty', 'Versatility']
   };
@@ -35,7 +35,7 @@ const FilterDropdown = ({ category, selectedFilters, onChange }) => {
             value={selectedFilters['Handedness'] === 'Right' ? 'Left' : 'Right'}
             onChange={handleSliderChange} 
           />
-          <div className="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-green-500 relative transition duration-300">
+          <div className="w-11 h-6 bg-blue-300 rounded-full peer peer-checked:bg-green-500 relative transition duration-300">
             <span className={`absolute w-4 h-4 bg-white rounded-full top-1 left-1 peer-checked:transform peer-checked:translate-x-5 transition-transform duration-300 ease-in-out`}></span>
           </div>
           <span className="ml-3 text-sm text-gray-900">{selectedFilters['Handedness'] || 'Left'}</span>
