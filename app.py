@@ -1,5 +1,18 @@
 from flask import Flask, send_from_directory, abort, redirect, url_for, make_response, jsonify, request
 import os
+import mysql.connector
+
+
+
+# Connect to MySQL database with username and password
+conn = mysql.connector.connect(
+    host="localhost",           # Your database host
+    user="root",       # Your MySQL username
+    password="Grub@123",   # Your MySQL password
+    database="BidWise"    # Your database name
+)
+
+cursor = conn.cursor()
 
 # Importing Model
 from Model.initialize import initializeSession
@@ -20,9 +33,13 @@ def serve_react_app(path):
 # API Handler
 @app.route('/api/maketeam', methods=['GET'])  # Coming from the get started button.
 def redirect_to_makeTeam():
-    initializeSession()
+    # initializeSession()
+    cursor.execute(f" truncate table batterdisplay")
+    cursor.execute(f" truncate table currentlyChosen")
+    cursor.execute(f"INSERT INTO batterdisplay SELECT * FROM tempbatterdisplay;")
+    conn.commit()
     
-    return jsonify({'message': 'Team initialized successfully'}), 200
+    return jsonify({'message': 'Team initialized successfully'}), 200   
 
 @app.route('/api/getplayers', methods=['GET'])
 def getplayers():
@@ -43,15 +60,15 @@ def getplayers():
                 temp = {
                     'name': i[0],      # Name of the player
                     'stats': [
-                     i[1],      # Total runs
-                    i[2],     # Balls faced
-                    i[3],     # Number of sixes
-                    i[4],  ]   # Number of times out
+                     i[-4],      # Total runs
+                    i[-3],     # Balls faced
+                    i[-2],     # Number of sixes
+                    i[-1],  ]   # Number of times out
                 }
                 players_data.append(temp)
 
         # Return JSON response
-        print("player data", players_data)
+        # print("player data", players_data)
         return jsonify({"message": "Success", "players": players_data})
     
     
@@ -60,7 +77,56 @@ def getplayers():
         return jsonify({"message": "Error occurred", "error": str(e)}), 500
 
 
+@app.route('/api/addplayers', methods=['GET'])
+def addplayers():
+    # Get data from the request
+    player = request.args.get('play')   
 
+    # data = request.json  # For JSON data
+    print("Player SH: ", player)
+
+    cursor.execute(f"SELECT * FROM BatterDisplay where Player = '{player}'")
+    data = cursor.fetchone()
+
+    cursor.execute(f"DELETE FROM BatterDisplay WHERE Player = '{player}'")
+
+    # cursor.execute(f"select * from currentlyChosen")
+    # players = cursor.fetchall()
+
+    # for i in players:
+    #     if i[0] == player:
+    #         return jsonify({"message": "Player already exists in the list"}), 400
+
+    cursor.execute(f"insert into currentlyChosen values('{data[0]}', {data[-6]}, {data[-5]}, {data[-4]}, {data[-3]}, {data[-2]}, {data[-1]})")
+    conn.commit()
+
+    cursor.execute(f"select * from currentlyChosen")
+    players = cursor.fetchall()
+
+    print("showa all:    ",players)
+    print("!!!!!!!!!!!!11111")
+
+    playersList = []
+
+    for i in players:
+        temp = {
+            'name': i[0],      # Name of the player
+            'stats': [
+                i[-6],
+                i[-5],
+                i[-4],      # Total runs
+                i[-3],     # Balls faced
+                i[-2],     # Number of sixes
+                i[-1],  ]   # Number of times out
+        }
+        playersList.append(temp)
+
+    print("L ",playersList)   
+    
+    response = {
+        'data': playersList
+    }
+    return jsonify(response), 200
 
 
 

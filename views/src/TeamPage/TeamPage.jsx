@@ -11,8 +11,8 @@ import SelectedPlayers from '../SelectedPlayers/SelectedPlayers';
 const TeamPage = () => {
   const [category, setCategory] = useState('Batsmen');
   const [players, setPlayers] = useState([])
-  const addPlayer = SelectedPlayers((state) => state.addPlayer);
-  const pl = SelectedPlayers((state) => state.players);
+  const [selected,setSelected]=useState([]);
+  
     const [filteredPlayers, setFilteredPlayers] = useState([]);
 
   const handleSearch = (searchTerm, filters) => {
@@ -23,30 +23,35 @@ const TeamPage = () => {
     setFilteredPlayers(results);
   };
 
-  const handleAddPlayer = (player) => {
+  async function handleAddPlayer(player) 
+  {
+    const params = new URLSearchParams({
+      play: player.name,
+  });
+
+  try {
+    const response = await fetch(`api/addplayers?${params}`);
     
-    addPlayer(player);
-    console.log('new global state ',pl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     
+    const data = await response.json();
+
+    console.log("data : "+data.data);
     
+    // Assuming `data.players` contains the players array
+
+    setSelected(data.data)
+
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
   };
 
   return (
     <div className="flex h-screen">
-      {/* <nav className="w-[250px] bg-gray-800 text-white p-4">
-        <h3 className="text-xl font-semibold mb-4">Categories</h3>
-        <ul>
-          <li className="mb-2">
-            <button onClick={() => setCategory('Batsmen')} className="w-full text-left p-2 hover:bg-gray-600 transition duration-300 ease-in-out">Batsmen</button>
-          </li>
-          <li className="mb-2">
-            <button onClick={() => setCategory('Bowlers')} className="w-full text-left p-2 hover:bg-gray-600 transition duration-300 ease-in-out">Bowlers</button>
-          </li>
-          <li>
-            <button onClick={() => setCategory('Allrounders')} className="w-full text-left p-2 hover:bg-gray-600 transition duration-300 ease-in-out">Allrounders</button>
-          </li>bhbhhbhbhbhhbh
-        </ul>
-      </nav> */}
+
       <NavBar type={category} setType={setCategory}/>
 
       {/* Main Content */}
@@ -59,7 +64,7 @@ const TeamPage = () => {
             onAddPlayer={handleAddPlayer}
           />
         </div>
-        <SelectedPlayers players={pl} />
+        <SelectedPlayers selected={selected} setSelected={setSelected} />
       </div>
     </div>
   );
