@@ -37,6 +37,7 @@ const TeamPage = () => {
   {
     const params = new URLSearchParams({
       play: player.name,
+      table: category
   });
 
   try {
@@ -46,13 +47,15 @@ const TeamPage = () => {
       throw new Error('Network response was not ok');
     }
     
-    const data = await response.json();
+    const d = await response.json();
 
-    console.log("data : "+data.data);
+    let plat = d.data
+
+    console.log("data : "+ plat[plat.length-1].name );
     
     // Assuming `data.players` contains the players array
 
-    setSelected(data.data)
+    setSelected(plat)
 
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);

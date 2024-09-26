@@ -1,18 +1,7 @@
 from flask import Flask, send_from_directory, abort, redirect, url_for, make_response, jsonify, request
 import os
-import mysql.connector
 
-
-
-# Connect to MySQL database with username and password
-conn = mysql.connector.connect(
-    host="localhost",           # Your database host
-    user="root",       # Your MySQL username
-    password="Grub@123",   # Your MySQL password
-    database="BidWise"    # Your database name
-)
-
-cursor = conn.cursor()
+from DB_Connector import cursor, conn
 
 # Importing Model
 from Model.initialize import initializeSession
@@ -34,10 +23,17 @@ def serve_react_app(path):
 @app.route('/api/maketeam', methods=['GET'])  # Coming from the get started button.
 def redirect_to_makeTeam():
     # initializeSession()
-    cursor.execute(f" truncate table batterdisplay")
-    cursor.execute(f" truncate table currentlyChosen")
+    cursor.execute(f"delete from  batterdisplay")
+    conn.commit()
+    cursor.execute(f" delete from currentlyChosen")
+    conn.commit()
+    cursor.execute(f" delete from  bowlerdisplay")
+    conn.commit()
     cursor.execute(f"INSERT INTO batterdisplay SELECT * FROM tempbatterdisplay;")
     conn.commit()
+    cursor.execute(f"INSERT INTO bowlerdisplay SELECT * FROM tempbowlerdisplay;")
+    conn.commit()
+    
     
     return jsonify({'message': 'Team initialized successfully'}), 200   
 
@@ -60,7 +56,9 @@ def getplayers():
                 temp = {
                     'name': i[0],      # Name of the player
                     'stats': [
-                     i[-4],      # Total runs
+                    i[-6],
+                    i[-5],
+                    i[-4],      # Total runs
                     i[-3],     # Balls faced
                     i[-2],     # Number of sixes
                     i[-1],  ]   # Number of times out
@@ -81,14 +79,27 @@ def getplayers():
 def addplayers():
     # Get data from the request
     player = request.args.get('play')   
-
+    tab = request.args.get('table')
     # data = request.json  # For JSON data
-    print("Player SH: ", player)
+    # print("Player SH: ", player)
 
-    cursor.execute(f"SELECT * FROM BatterDisplay where Player = '{player}'")
+    table = ''
+    if tab == 'Batsmen':
+        table = 'batterdisplay'
+    elif tab == 'Bowlers':
+        table = 'bowlerdisplay'
+    else:
+        print("Invalid type provided")
+        return None  
+
+
+    cursor.execute(f"SELECT * FROM {table} where Player = '{player}'")
     data = cursor.fetchone()
 
-    cursor.execute(f"DELETE FROM BatterDisplay WHERE Player = '{player}'")
+    # cursor.execute(f"DELETE FROM BatterDisplay WHERE Player = '{player}'")
+    # conn.commit()
+
+    print("DATA:  easd:   ", data)
 
     # cursor.execute(f"select * from currentlyChosen")
     # players = cursor.fetchall()
@@ -129,6 +140,26 @@ def addplayers():
     return jsonify(response), 200
 
 
+@app.route('/api/removeplayers', methods=['POST'])
+def removeplayers():
+    
+    data = request.get_json()
+    name = data if isinstance(data, str) else data.get('name')
+
+    cursor.execute("SELECT Player FROM currentlychosen WHERE Player = %s", (name,))
+    te = cursor.fetchone() 
+    print("TE: ", te)
+
+    if te:
+        cursor.execute("DELETE FROM currentlychosen WHERE Player = %s", (name,))
+        conn.commit()
+        print(f"Player {name} deleted successfully.")
+    else:
+        print(f"Player {name} not found.")
+
+
+
+    return jsonify({'message': f'Player {name} removed successfully.'}), 200
 
 
 

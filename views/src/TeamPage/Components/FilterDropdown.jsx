@@ -3,15 +3,16 @@ import React from 'react';
 
 const FilterDropdown = ({ category, selectedFilters, onChange }) => {
   const filters = {
-    Batsmen: ['BMI', 'BPB', 'FI', 'RBW', 'Power', 'Certainity'],
-    Bowlers: ['Pace', 'Spin', 'Economy', 'Wickets', 'Average'],
+
+    Batsmen: ['BMI', 'BPB', 'FI', 'RBW', 'Power','Certainty'],
+    Bowlers: ['Certainty', 'BII', 'SII', 'WI', 'Econ', 'Power'],
+
     Allrounders: ['Batting Avg', 'Bowling Avg', 'Power', 'Certainty', 'Versatility']
   };
 
   const handleCheckboxChange = (filter) => {
     onChange({
-      ...selectedFilters,
-      [filter]: !selectedFilters[filter]
+      [filter]: filter
     });
   };
 
