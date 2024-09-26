@@ -18,12 +18,16 @@ def getPlayersFromDB(name, filter_param, player_type):
     # Determine the correct table based on type
     table = ''
     if player_type == 'Batsmen':
-        table = 'batters'
+        table = 'BatterDisplay'
     elif player_type == 'Bowlers':
         table = 'bowlers'
     else:
         print("Invalid type provided")
-        return None  # Exit early if the type is invalid
+        return None  
+    
+    print("oneL ",filter_param)
+    print("oneL ",filter_param)
+
 
     # Build the query with placeholders to avoid SQL injection
     # query = f"SELECT * FROM {table} LIMIT 5"  # You can modify the query as needed
@@ -32,7 +36,7 @@ def getPlayersFromDB(name, filter_param, player_type):
 
     try:
         
-        cursor.execute(f"SELECT * FROM {table} LIMIT 10")
+        cursor.execute(f"SELECT * FROM {table} LIMIT 25")
 
         players = cursor.fetchall()
 

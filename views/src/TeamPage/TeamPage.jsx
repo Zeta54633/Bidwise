@@ -5,9 +5,12 @@ import PlayerDisplay from './Components/PlayerDisplay';
 import NavBar from '../Components/NavBar';
 
 const TeamPage = () => {
-  const [category, setCategory] = useState('Batsmen'); // Default category is 'Batsmen'
-  const [players, setPlayers] = useState([]); // Full list of players
-  const [filteredPlayers, setFilteredPlayers] = useState([]); // Filtered players based on search and filters
+
+  const [category, setCategory] = useState('Batsmen');
+  const [players, setPlayers] = useState([])
+  const [selected,setSelected]=useState([]);
+  const [filteredPlayers, setFilteredPlayers] = useState([]);
+
 
   const handleSearch = (searchTerm, filters) => {
     // Filter logic combining searchTerm and filters
@@ -29,15 +32,38 @@ const TeamPage = () => {
     setFilteredPlayers(filteredResults);
   };
 
-  const handleAddPlayer = (player) => {
-    console.log(`Added player: ${player.name}`);
-    // Logic to add player to another component can go here
+
+  async function handleAddPlayer(player) 
+  {
+    const params = new URLSearchParams({
+      play: player.name,
+  });
+
+  try {
+    const response = await fetch(`api/addplayers?${params}`);
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    const data = await response.json();
+
+    console.log("data : "+data.data);
+    
+    // Assuming `data.players` contains the players array
+
+    setSelected(data.data)
+
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
   };
 
   return (
     <div className="flex h-screen">
-      {/* Left Navigation Bar */}
-      <NavBar type={category} setType={setCategory} />
+
+      <NavBar type={category} setType={setCategory}/>
+
 
       {/* Main Content */}
       <div className="w-3/4 p-8">
@@ -57,6 +83,9 @@ const TeamPage = () => {
             onAddPlayer={handleAddPlayer}
           />
         </div>
+
+        <SelectedPlayers selected={selected} setSelected={setSelected} />
+
       </div>
     </div>
   );

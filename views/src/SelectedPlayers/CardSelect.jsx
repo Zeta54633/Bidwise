@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CardSelect = ({obj,removePlayer}) => {
+const CardSelect = ({player,removePlayer}) => {
   return (
     <div>
-      {obj.name}
+      {player.name}
     </div>
   )
 }
